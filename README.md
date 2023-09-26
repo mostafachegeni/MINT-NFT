@@ -98,7 +98,7 @@ Within the Cardano network, each token operation is guided by a specific policy 
 Here's how we can create these keys:
 ```
 # set up a dedicated directory for policy-related files
-mkdir policy
+mkdir -p policy
 
 # generate the policy keys
 cardano-cli address key-gen \
