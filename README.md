@@ -31,7 +31,8 @@ Start by running a Cardano node and connecting to the UZH-Cardano network. For a
 # 2. Set up a new working directory
 It is crucial to organize our files efficiently. Let's begin by creating a new working directory named nft. This will serve as our workspace for all tasks related to this module. Upon executing these commands, you'll have established 'nft' as your current working directory, ensuring all our subsequent activities are neatly contained within this folder. Follow the commands below:
 ```
-mkdir nft
+cd ~
+mkdir -p nft
 cd nft/
 ```
 
