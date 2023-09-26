@@ -251,29 +251,29 @@ This command will identify and collate all UTXOs related to our address, paving 
 ## 11.2. Building the Transaction
 Here, we structure the transaction, incorporating details such as the token amount, policy ID, token name, policy script, and our predefined metadata.
 ```
-cardano-cli transaction build
-  --testnet-magic 2023
-  ${tx_in}
-  --tx-out $address+$output+"$tokenamount $policyid.$tokenname"
-  --change-address $address
-  --mint="$tokenamount $policyid.$tokenname"
-  --minting-script-file $script
-  --metadata-json-file metadata.json
-  --invalid-hereafter $slotnumber
-  --witness-override 2
-  --out-file $TXS_PATH/matx.raw
+cardano-cli transaction build \
+        --testnet-magic 2023 \
+        ${tx_in} \
+        --tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
+        --change-address $address \
+        --mint="$tokenamount $policyid.$tokenname" \
+        --minting-script-file $script \
+        --metadata-json-file metadata.json  \
+        --invalid-hereafter $slotnumber \
+        --witness-override 2 \
+        --out-file $TXS_PATH/matx.raw
 ```
 
 
 ## 11.3. Signing the Transaction
 For security reasons and to validate authenticity, transactions on the Cardano network need to be signed using secret keys associated with the involved assets and addresses.
 ```
-cardano-cli transaction sign
-  --signing-key-file payment.skey
-  --signing-key-file policy/policy.skey
-  --testnet-magic 2023
-  --tx-body-file $TXS_PATH/matx.raw
-  --out-file $TXS_PATH/matx.signed
+cardano-cli transaction sign  \
+        --signing-key-file payment.skey  \
+        --signing-key-file policy/policy.skey  \
+        --testnet-magic 2023 \
+        --tx-body-file $TXS_PATH/matx.raw  \
+        --out-file $TXS_PATH/matx.signed
 ```
 
 
