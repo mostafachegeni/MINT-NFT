@@ -66,7 +66,7 @@ cat payment.addr
 ```
 # ------------------------------------------------------------------------------------------------
 # This command MUST be executed on the bootstrap node to send 20 ADA to the address you've just generated:
-        ~/UZH-Cardano-Network/scripts/send_ada.sh 20000000 <ADDRESS>
+        ~/UZH-Cardano-Network/scripts/send_ada.sh 2000000 <ADDRESS>
 # ------------------------------------------------------------------------------------------------
 ```
 Ensure you replace <ADDRESS> with the payment address you previously displayed.
