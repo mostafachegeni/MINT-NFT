@@ -61,9 +61,13 @@ address=$(cat payment.addr)
 ```
 # Display your payment address
 cat payment.addr
+```
 
+```
+# ------------------------------------------------------------------------------------------------
 # This command MUST be executed on the bootstrap node to send 20 ADA to the address you've just generated:
-~/UZH-Cardano-Network/scripts/send_ada.sh 20000000 <ADDRESS>
+        ~/UZH-Cardano-Network/scripts/send_ada.sh 20000000 <ADDRESS>
+# ------------------------------------------------------------------------------------------------
 ```
 Ensure you replace <ADDRESS> with the payment address you previously displayed.
 
@@ -71,6 +75,10 @@ Ensure you replace <ADDRESS> with the payment address you previously displayed.
 To check if the address has successfully received the funds, use the following command:
 ```
 cardano-cli query utxo --address $address --testnet-magic 2023
+# The output should look like the following:
+#                            TxHash                                 TxIx        Amount
+# --------------------------------------------------------------------------------------
+# 739b67b424ed75a69d4e1b2756c12ac2f49c26e6dbf23ce446343379cf861e2b     0        3000000 lovelace + TxOutDatumNone
 ```
 
 
@@ -215,7 +223,7 @@ cat metadata.json
 # 11. Build and Submit NFT Transaction to Cardano Blockchain
 The minting of an NFT on the Cardano network involves a series of intricate steps, from building the transaction to ultimately submitting it to the blockchain. Let's break down this process.
 
-## 11.1 Discovering UTXOs (Unspent Transaction Outputs)
+## 11.1. Discovering UTXOs (Unspent Transaction Outputs)
 Before constructing our transaction, we need to determine the current balance and UTXOs associated with our address. UTXOs are vital components of the Cardano transaction model, representing assets that are yet to be spent.
 ```
 output=300000
@@ -240,7 +248,7 @@ done < $TXS_PATH/balance.out
 This command will identify and collate all UTXOs related to our address, paving the way for the transaction's construction.
 
 
-## 11.2 Building the Transaction
+## 11.2. Building the Transaction
 Here, we structure the transaction, incorporating details such as the token amount, policy ID, token name, policy script, and our predefined metadata.
 ```
 cardano-cli transaction build
@@ -257,7 +265,7 @@ cardano-cli transaction build
 ```
 
 
-## 11.3 Signing the Transaction
+## 11.3. Signing the Transaction
 For security reasons and to validate authenticity, transactions on the Cardano network need to be signed using secret keys associated with the involved assets and addresses.
 ```
 cardano-cli transaction sign
@@ -269,16 +277,21 @@ cardano-cli transaction sign
 ```
 
 
-## 11.4 Submitting the Transaction
+## 11.4. Submitting the Transaction
 With our signed transaction in hand, the next step is to broadcast it to the Cardano network, allowing it to be validated and recorded on the blockchain.
 ```
 cardano-cli transaction submit --tx-file $TXS_PATH/matx.signed --testnet-magic 2023
 ```
 
-## 11.5 Verification
+## 11.5. Verification
 To ensure our NFT has been successfully minted and is now linked to our address, we can check the list of all UTXOs associated with our address.
 ```
 cardano-cli query utxo --address $address --testnet-magic 2023
+# The output should look like the following:
+#                            TxHash                                 TxIx        Amount
+# --------------------------------------------------------------------------------------
+# 739b67b424ed75a69d4e1b2756c12ac2f49c26e6dbf23ce446343379cf861e2b     0        3000000 lovelace + 1 e70b796ee73d1e6c70e2e0425cf2e2a6b9893ba1cf6cd5318a2b5524.4e465431 + TxOutDatumNone
+# 739b67b424ed75a69d4e1b2756c12ac2f49c26e6dbf23ce446343379cf861e2b     1        16433669 lovelace + TxOutDatumNone 
 ```
 
 Upon completion of these steps, your unique NFT will have been successfully minted and recorded on the Cardano blockchain, a testament to the network's versatility and robustness.
