@@ -120,18 +120,18 @@ slotnumber=$(expr $(cardano-cli query tip --testnet-magic 2023 | jq .slot?) + 10
 Now, it's time to structure our policy.script file that incorporates these characteristics:
 ```
 echo "{" > policy/policy.script
-echo " "type": "all"," >> policy/policy.script
-echo " "scripts":" >> policy/policy.script
-echo " [" >> policy/policy.script
-echo " {" >> policy/policy.script
-echo " "type": "before"," >> policy/policy.script
-echo " "slot": $slotnumber" >> policy/policy.script
-echo " }," >> policy/policy.script
-echo " {" >> policy/policy.script
-echo " "type": "sig"," >> policy/policy.script
-echo " "keyHash": "$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)"" >> policy/policy.script
-echo " }" >> policy/policy.script
-echo " ]" >> policy/policy.script
+echo "  \"type\": \"all\"," >> policy/policy.script
+echo "  \"scripts\":" >> policy/policy.script
+echo "  [" >> policy/policy.script
+echo "   {" >> policy/policy.script
+echo "     \"type\": \"before\"," >> policy/policy.script
+echo "     \"slot\": $slotnumber" >> policy/policy.script
+echo "   }," >> policy/policy.script
+echo "   {" >> policy/policy.script
+echo "     \"type\": \"sig\"," >> policy/policy.script
+echo "     \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"" >> policy/policy.script
+echo "   }" >> policy/policy.script
+echo "  ]" >> policy/policy.script
 echo "}" >> policy/policy.script
 ```
 
@@ -188,16 +188,16 @@ Metadata plays a critical role in the Cardano ecosystem as it carries vital info
 To structure our metadata, use the following commands:
 ```
 echo "{" > metadata.json
-echo " "721": {" >> metadata.json
-echo " "$(cat policy/policyID)": {" >> metadata.json
-echo " "$(echo $realtokenname)": {" >> metadata.json
-echo " "description": "A sample NFT on UZH-Cardano Network"," >> metadata.json
-echo " "name": "UZH-Cardano NFT"," >> metadata.json
-echo " "id": "1"," >> metadata.json
-echo " "image": "ipfs://$(echo $ipfs_hash)"" >> metadata.json
-echo " }" >> metadata.json
-echo " }" >> metadata.json
-echo " }" >> metadata.json
+echo "  \"721\": {" >> metadata.json
+echo "    \"$(cat policy/policyID)\": {" >> metadata.json
+echo "      \"$(echo $realtokenname)\": {" >> metadata.json
+echo "        \"description\": \"A sample NFT on UZH-Cardano Network\"," >> metadata.json
+echo "        \"name\": \"UZH-Cardano NFT\"," >> metadata.json
+echo "        \"id\": \"1\"," >> metadata.json
+echo "        \"image\": \"ipfs://$(echo $ipfs_hash)\"" >> metadata.json
+echo "      }" >> metadata.json
+echo "    }" >> metadata.json
+echo "  }" >> metadata.json
 echo "}" >> metadata.json
 ```
 
