@@ -184,7 +184,7 @@ cat policy/policyID
 
 
 # 10. Defining Metadata for our NFT
-Metadata plays a critical role in the Cardano ecosystem as it carries vital information about the tokens. Essentially, it's a set of data that describes and gives information about other data. In the context of our token operations, we'll adjust our metadata to encompass pivotal details that would be stored on the blockchain. Notably, this metadata will house the policyID, which serves as a unique identifier for our token's governing rules, and the address of our NFT image on the InterPlanetary File System (IPFS).
+Metadata plays a critical role in the Cardano ecosystem as it carries vital information about the tokens. Essentially, it's a set of data that describes and gives information about other data. In the context of our token operations, we'll adjust our metadata to encompass pivotal details that would be stored on the blockchain. Notably, this metadata will house the `policyID`, which serves as a unique identifier for our token's governing rules, and the address of our NFT image on the InterPlanetary File System (IPFS).
 
 To structure our metadata, use the following commands:
 ```
