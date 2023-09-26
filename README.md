@@ -52,14 +52,14 @@ The next pivotal step involves generating the necessary keys and addresses. Thes
 # Generate the keys
 cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey
 
-# Build the address:
+# Build the address
 cardano-cli address build --payment-verification-key-file payment.vkey --out-file payment.addr --testnet-magic 2023
 address=$(cat payment.addr)
 ```
 
 # 5. Receiving Funds
 ```
-# Display your payment address:
+# Display your payment address
 cat payment.addr
 
 # This command MUST be executed on the bootstrap node to send 20 ADA to the address you've just generated:
@@ -82,30 +82,157 @@ cardano-cli query protocol-parameters --testnet-magic 2023 --out-file protocol.j
 By executing the above command, you'll have saved the protocol parameters to a file named protocol.json, which will be referenced in our subsequent steps.
 
 
-# 7. 
+# 7. Generating Policy Keys for Token Operations
+Within the Cardano network, each token operation is guided by a specific policy that outlines its behavior and rules. This policy is backed by cryptographic keys which serve as a unique identifier and a measure of security. In this step, we'll be generating a pair of policy keys. These keys play a dual role:
+  1. They form an integral component of the policy script, which sets the guidelines for the token.
+  2. They are used for signing the minting transaction, ensuring authenticity and integrity.
+Here's how we can create these keys:
+```
+# set up a dedicated directory for policy-related files
+mkdir policy
+
+# generate the policy keys
+cardano-cli address key-gen \
+  --verification-key-file policy/policy.vkey \
+  --signing-key-file policy/policy.skey
+```
+
+
+
+# 8. Defining Script File for Token Operations
+The backbone of our token operations lies in a script that defines the rules and boundaries for our assets. This script ensures that our tokens function within the constraints we've outlined for them. Let's delve into creating a script that:
+  1. Allows only one signature for minting.
+  2. Prevents any further minting or burning of the asset after 10,000 slots have lapsed post-transaction.
+
+To begin, determine the `current slot number + 10000`, which serves as our baseline:
+```
+slotnumber=$(expr $(cardano-cli query tip --testnet-magic 2023 | jq .slot?) + 10000)
+```
+
+Now, it's time to structure our policy.script file that incorporates these characteristics:
+```
+echo "{" > policy/policy.script
+echo " "type": "all"," >> policy/policy.script
+echo " "scripts":" >> policy/policy.script
+echo " [" >> policy/policy.script
+echo " {" >> policy/policy.script
+echo " "type": "before"," >> policy/policy.script
+echo " "slot": $slotnumber" >> policy/policy.script
+echo " }," >> policy/policy.script
+echo " {" >> policy/policy.script
+echo " "type": "sig"," >> policy/policy.script
+echo " "keyHash": "$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)"" >> policy/policy.script
+echo " }" >> policy/policy.script
+echo " ]" >> policy/policy.script
+echo "}" >> policy/policy.script
+```
+
+
+To verify our script's integrity and ensure it matches our desired characteristics, let's display its content:
+```
+cat policy/policy.script
+# The output should look like the following:
+#{
+#  "type": "all",
+#  "scripts":
+#  [
+#   {
+#     "type": "before",
+#     "slot": 2523661
+#   },
+#   {
+#     "type": "sig",
+#     "keyHash": "66f967dbb85e864f5eb8ac3997eaa2c4ae7891c2ef264e9e5def3f66"
+#   }
+#  ]
+#}
+```
+
+
+Lastly, allocate the script to a variable for easy referencing in our upcoming steps:
+```
+script="policy/policy.script"
+```
+
+
+
+# 9. Deriving the PolicyID from the Policy Script
+In the Cardano ecosystem, each token's behavior and rules are dictated by its associated policy. A unique identifier, known as the policyID, is used to represent this policy throughout the network. This policyID is not arbitrarily assigned; instead, it's derived by computing the hash of the policy script.
+
+To generate the policyID, follow these commands:
+```
+# Compute the hash of our policy script to produce the policyID
+cardano-cli transaction policyid --script-file ./policy/policy.script > policy/policyID
+
+# Assign the generated policyID to a variable for easier reference in subsequent steps
+policyid=$(cat policy/policyID)
+
+# Display the derived policyID to verify its generation
+cat policy/policyID
+```
 
 
 
 
-# 8. 
+# 10. Defining Metadata for our NFT
+Metadata plays a critical role in the Cardano ecosystem as it carries vital information about the tokens. Essentially, it's a set of data that describes and gives information about other data. In the context of our token operations, we'll adjust our metadata to encompass pivotal details that would be stored on the blockchain. Notably, this metadata will house the policyID, which serves as a unique identifier for our token's governing rules, and the address of our NFT image on the InterPlanetary File System (IPFS).
 
+To structure our metadata, use the following commands:
+```
+echo "{" > metadata.json
+echo " "721": {" >> metadata.json
+echo " "$(cat policy/policyID)": {" >> metadata.json
+echo " "$(echo $realtokenname)": {" >> metadata.json
+echo " "description": "A sample NFT on UZH-Cardano Network"," >> metadata.json
+echo " "name": "UZH-Cardano NFT"," >> metadata.json
+echo " "id": "1"," >> metadata.json
+echo " "image": "ipfs://$(echo $ipfs_hash)"" >> metadata.json
+echo " }" >> metadata.json
+echo " }" >> metadata.json
+echo " }" >> metadata.json
+echo "}" >> metadata.json
+```
 
-
-
-# 9. 
-
-
-
-
-
-
-# 10. 
-
-
-
-
+To ensure everything is in place and looks as expected, display the content of our metadata:
+```
+cat metadata.json
+# The output should look like the following:
+#{
+#  "721": {
+#    "b98f50c644394116ae302d70ede70d2e15a19ddc4411e3a41eab32a4": {
+#      "NFT1": {
+#        "description": "A sample NFT on UZH-Cardano Network",
+#        "name": "UZH-Cardano NFT",
+#        "id": "1",
+#        "image": "ipfs://QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw"
+#      }
+#    }
+#  }
+#}
+```
 
 
 # 11. 
+
+
+
+# 12. 
+
+
+
+# 13. 
+
+
+
+# 14. 
+
+
+
+# 15. 
+
+
+
+# 16. 
+
 
 
