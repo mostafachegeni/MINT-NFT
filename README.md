@@ -69,7 +69,7 @@ cat payment.addr
         ~/UZH-Cardano-Network/scripts/send_ada.sh 2000000 <ADDRESS>
 # ------------------------------------------------------------------------------------------------
 ```
-Ensure you replace <ADDRESS> with the payment address you previously displayed.
+Ensure you replace `<ADDRESS>` with the payment address you previously displayed.
 
 
 To check if the address has successfully received the funds, use the following command:
