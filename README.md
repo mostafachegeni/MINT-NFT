@@ -66,7 +66,7 @@ cat payment.addr
 ```
 # ------------------------------------------------------------------------------------------------
 # This command MUST be executed on the bootstrap node to send 20 ADA to the address you've just generated:
-        ~/UZH-Cardano-Network/scripts/send_ada.sh 2000000 <ADDRESS>
+        ~/UZH-Cardano-Network/scripts/send_ada.sh 20000000 <ADDRESS>
 # ------------------------------------------------------------------------------------------------
 ```
 Ensure you replace `<ADDRESS>` with the payment address you previously displayed.
@@ -78,7 +78,7 @@ cardano-cli query utxo --address $address --testnet-magic 2023
 # The output should look like the following:
 #                            TxHash                                 TxIx        Amount
 # --------------------------------------------------------------------------------------
-# 739b67b424ed75a69d4e1b2756c12ac2f49c26e6dbf23ce446343379cf861e2b     0        3000000 lovelace + TxOutDatumNone
+# 739b67b424ed75a69d4e1b2756c12ac2f49c26e6dbf23ce446343379cf861e2b     0        20000000 lovelace + TxOutDatumNone
 ```
 
 
@@ -226,7 +226,7 @@ The minting of an NFT on the Cardano network involves a series of intricate step
 ## 11.1. Discovering UTXOs (Unspent Transaction Outputs)
 Before constructing our transaction, we need to determine the current balance and UTXOs associated with our address. UTXOs are vital components of the Cardano transaction model, representing assets that are yet to be spent.
 ```
-output=300000
+output=3000000
 NETWORK_MAGIC=2023
 TXS_PATH=./txs
 mkdir -p $TXS_PATH
