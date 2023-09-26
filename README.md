@@ -52,7 +52,6 @@ The next pivotal step involves generating the necessary keys and addresses. Thes
 # Generate the keys
 cardano-cli address key-gen --verification-key-file payment.vkey --signing-key-file payment.skey
 
-
 # Build the address:
 cardano-cli address build --payment-verification-key-file payment.vkey --out-file payment.addr --testnet-magic 2023
 address=$(cat payment.addr)
@@ -62,7 +61,6 @@ address=$(cat payment.addr)
 ```
 # Display your payment address:
 cat payment.addr
-
 
 # This command MUST be executed on the bootstrap node to send 20 ADA to the address you've just generated:
 ~/UZH-Cardano-Network/scripts/send_ada.sh 20000000 <ADDRESS>
