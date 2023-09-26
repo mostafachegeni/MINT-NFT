@@ -30,7 +30,7 @@ To view the image, access it through the pinata gateway:
 
 Start by running a Cardano node and connecting to the UZH-Cardano network. For a comprehensive guide on setting up a Cardano node in the UZH-Cardano network, refer to 
 our [UZH Gitlab repository](https://gitlab.uzh.ch/mostafa.chegenizadeh/uzh-cardano-network)
-or our GitHub repository: [https://github.com/mostafachegeni/UZH-Cardano-Network](https://github.com/mostafachegeni/UZH-Cardano-Network)
+or our [GitHub repository](https://github.com/mostafachegeni/UZH-Cardano-Network)
 
 # 2. Set up a new working directory
 It is crucial to organize our files efficiently. Let's begin by creating a new working directory named nft. This will serve as our workspace for all tasks related to this module. Upon executing these commands, you'll have established 'nft' as your current working directory, ensuring all our subsequent activities are neatly contained within this folder. Follow the commands below:
