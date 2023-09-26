@@ -29,7 +29,7 @@ To view the image, access it through the pinata gateway:
 # 1. Initiating the Process
 
 Start by running a Cardano node and connecting to the UZH-Cardano network. For a comprehensive guide on setting up a Cardano node in the UZH-Cardano network, refer to 
-our UZH Gitlab repository: [https://gitlab.uzh.ch/mostafa.chegenizadeh/uzh-cardano-network](https://gitlab.uzh.ch/mostafa.chegenizadeh/uzh-cardano-network)
+our [UZH Gitlab repository](https://gitlab.uzh.ch/mostafa.chegenizadeh/uzh-cardano-network)
 or our GitHub repository: [https://github.com/mostafachegeni/UZH-Cardano-Network](https://github.com/mostafachegeni/UZH-Cardano-Network)
 
 # 2. Set up a new working directory
