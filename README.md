@@ -21,7 +21,7 @@ Considering the potential trade and sale of NFTs, they must adhere to stringent 
 
 ### Our NFT's Reference Image
 
-Our NFT will link to an image `ipfs://[QmbqYorMg8xsiUGnmU9dXfHZCvq8kXZYrcUxvScdG5stKV` stored on the InterPlanetary File System (IPFS), a decentralized peer-to-peer network for data storage and sharing.
+Our NFT will link to an image `ipfs://QmbqYorMg8xsiUGnmU9dXfHZCvq8kXZYrcUxvScdG5stKV` stored on the InterPlanetary File System (IPFS), a decentralized peer-to-peer network for data storage and sharing.
 To view the image, access it through the [pinata gateway](https://gateway.pinata.cloud/ipfs/QmbqYorMg8xsiUGnmU9dXfHZCvq8kXZYrcUxvScdG5stKV).
 
 # 1. Initiating the Process
