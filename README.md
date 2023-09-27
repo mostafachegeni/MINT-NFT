@@ -1,6 +1,6 @@
 # Minting NFTs in the UZH-Cardano-Network
 
-This guide provides a step-by-step walkthrough on minting non-fungible tokens (NFTs) within our private Cardano network, known as UZH-Cardano-Network.
+This guide provides a step-by-step walkthrough on minting non-fungible tokens (NFTs) within our private Cardano network, known as [UZH-Cardano-Network](https://github.com/mostafachegeni/UZH-Cardano-Network).
 
 ### Understanding Native Tokens and Assets
 
