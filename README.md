@@ -284,7 +284,7 @@ With our signed transaction in hand, the next step is to broadcast it to the Car
 cardano-cli transaction submit --tx-file $TXS_PATH/matx.signed --testnet-magic 2023
 ```
 
-## 11.5. Verification
+# 12. Verification
 To ensure our NFT has been successfully minted and is now linked to our address, we can check the list of all UTXOs associated with our address.
 ```
 cardano-cli query utxo --address $address --testnet-magic 2023
