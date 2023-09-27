@@ -43,7 +43,7 @@ It is essential to make our workflow as seamless as possible. We'll set vital va
 realtokenname="NFT1"
 tokenname=$(echo -n $realtokenname | xxd -b -ps -c 80 | tr -d '\n')
 tokenamount="1"
-ipfs_hash="QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw"
+ipfs_hash="QmbqYorMg8xsiUGnmU9dXfHZCvq8kXZYrcUxvScdG5stKV"
 ```
 
 
